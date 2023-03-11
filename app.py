@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 from urllib.request import urlopen as uReq
 import logging
+import flask_cors
 import pymongo
 
 logging.basicConfig(filename="scrapper.log" , level=logging.INFO)
@@ -74,11 +75,13 @@ def index():
                           "Comment": custComment}
                 reviews.append(mydict)
             logging.info("log my final result {}".format(reviews))
-
-            #client = pymongo.MongoClient("mongodb+srv://Nikshit-Vora:MongoDB123n$@cluster0.yl1hrtv.mongodb.net/?retryWrites=true&w=majority")
-            #db = client["scrapper_web"]
-            #coll_name = db["scrapper_coll"]
-            #coll_name.insert_many(reviews)
+            
+            
+            
+            client = pymongo.MongoClient("mongodb+srv://N-V:Python115n@cluster0.yl1hrtv.mongodb.net/?retryWrites=true&w=majority")
+            db = client["scrapper_58"]
+            coll_1235 = db["scrapper_1895"]
+            coll_1235.insert_many(reviews)
             
             return render_template('result.html', reviews=reviews[0:(len(reviews)-1)])
         
